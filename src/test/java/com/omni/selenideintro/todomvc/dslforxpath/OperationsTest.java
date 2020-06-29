@@ -26,12 +26,10 @@ public class OperationsTest {
         Configuration.timeout = 6000;
         open("http://todomvc.com/examples/emberjs/");
 
-
         element(byXpath(newTodoList)).setValue("a").pressEnter();
         element(byXpath(newTodoList)).setValue("b").pressEnter();
         element(byXpath(newTodoList)).setValue("c").pressEnter();
         elements(byXpath(todoList)).shouldHave(exactTexts("a", "b", "c"));
-
 
         element(byXpath(toggleTaskBInTodoList)).click();
         elements(byXpath(completedTasks)).shouldHave(exactTexts("b"));
