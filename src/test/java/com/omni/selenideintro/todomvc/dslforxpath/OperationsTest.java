@@ -1,7 +1,8 @@
 package com.omni.selenideintro.todomvc.dslforxpath;
 
 import com.codeborne.selenide.Configuration;
-import com.omni.selenideintro.common.xpathdsl.XPath;
+import com.omni.selenideintro.common.selectors.xpath.dsl.Its;
+import com.omni.selenideintro.common.selectors.xpath.dsl.X;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
@@ -9,30 +10,31 @@ import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
 
 public class OperationsTest {
-   // Selector list
-    String newTodoList = XPath.all().filterById("new-todo").path(),
-           todoList = XPath.all().filterById("todo-list").child("li").path(),
-           toggleTaskBInTodoList = XPath.all().filterById("todo-list")
-                    .child("li").filterByDescendantWithText("b")
-                    .descendant().filterByCssClass("toggle").path(),
-           completedTasks = XPath.all().filterById("todo-list")
-                   .child("li").filterByCssClass("completed").path(),
-           notCompletedTasks = XPath.all().filterById("todo-list")
-                   .child("li").filterByNoCssClass("completed").path();
-
+   
     @Test
     void completesTask() {
 
         Configuration.timeout = 6000;
         open("http://todomvc.com/examples/emberjs/");
 
-        element(byXpath(newTodoList)).setValue("a").pressEnter();
-        element(byXpath(newTodoList)).setValue("b").pressEnter();
-        element(byXpath(newTodoList)).setValue("c").pressEnter();
-        elements(byXpath(todoList)).shouldHave(exactTexts("a", "b", "c"));
+        element(byXpath(X.all().by(Its.id("new-todo")).x())).setValue("a")
+                .pressEnter();
+        element(byXpath(X.all().by(Its.id("new-todo")).x())).setValue("b")
+                .pressEnter();
+        element(byXpath(X.all().by(Its.id("new-todo")).x())).setValue("c")
+                .pressEnter();
+        elements(byXpath(X.all().by(Its.id("todo-list")).child("li").x()))
+                .shouldHave(exactTexts("a", "b", "c"));
 
-        element(byXpath(toggleTaskBInTodoList)).click();
-        elements(byXpath(completedTasks)).shouldHave(exactTexts("b"));
-        elements(byXpath(notCompletedTasks)).shouldHave(exactTexts("a", "c"));
+        element(byXpath(X.all().by(Its.id("todo-list"))
+                .child("li").by(Its.descendantWithText("b"))
+                .descendant().by(Its.cssClass("toggle")).x()))
+                .click();
+        elements(byXpath(X.all().by(Its.id("todo-list"))
+                .child("li").by(Its.cssClass("completed")).x()))
+                .shouldHave(exactTexts("b"));
+        elements(byXpath(X.all().by(Its.id("todo-list"))
+                .child("li").by(Its.noCssClass("completed")).x()))
+                .shouldHave(exactTexts("a", "c"));
     }
 }

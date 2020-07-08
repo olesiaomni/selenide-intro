@@ -1,4 +1,4 @@
-package com.omni.selenideintro.common.xpathselectors;
+package com.omni.selenideintro.common.selectors.xpath.utils;
 
 public class X {
     public static String filterByCssClass(String value) {

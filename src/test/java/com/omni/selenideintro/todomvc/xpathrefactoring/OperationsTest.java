@@ -1,7 +1,7 @@
 package com.omni.selenideintro.todomvc.xpathrefactoring;
 
 import com.codeborne.selenide.Configuration;
-import com.omni.selenideintro.common.xpathselectors.X;
+import com.omni.selenideintro.common.selectors.xpath.utils.X;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
