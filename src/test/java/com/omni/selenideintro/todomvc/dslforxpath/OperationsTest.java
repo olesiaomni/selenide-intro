@@ -1,8 +1,8 @@
 package com.omni.selenideintro.todomvc.dslforxpath;
 
 import com.codeborne.selenide.Configuration;
-import com.omni.selenideintro.common.selectors.xpath.dsl.Its;
 import com.omni.selenideintro.common.selectors.xpath.dsl.X;
+import com.omni.selenideintro.common.selectors.xpath.dsl.X.Its;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
