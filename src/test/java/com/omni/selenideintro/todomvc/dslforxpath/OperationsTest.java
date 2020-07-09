@@ -17,24 +17,31 @@ public class OperationsTest {
         Configuration.timeout = 6000;
         open("http://todomvc.com/examples/emberjs/");
 
-        element(byXpath(X.all().by(Its.id("new-todo")).x())).setValue("a")
-                .pressEnter();
-        element(byXpath(X.all().by(Its.id("new-todo")).x())).setValue("b")
-                .pressEnter();
-        element(byXpath(X.all().by(Its.id("new-todo")).x())).setValue("c")
-                .pressEnter();
-        elements(byXpath(X.all().by(Its.id("todo-list")).child("li").x()))
-                .shouldHave(exactTexts("a", "b", "c"));
+        element(byXpath(X
+                .any().by(Its.id("new-todo"))
+                .x())).setValue("a").pressEnter();
+        element(byXpath(X.
+                any().by(Its.id("new-todo"))
+                .x())).setValue("b").pressEnter();
+        element(byXpath(X.
+                any().by(Its.id("new-todo"))
+                .x())).setValue("c").pressEnter();
+        elements(byXpath(X
+                .any().by(Its.id("todo-list")).child("li")
+                .x())).shouldHave(exactTexts("a", "b", "c"));
 
-        element(byXpath(X.all().by(Its.id("todo-list"))
-                .child("li").by(Its.descendantWithText("b"))
-                .descendant().by(Its.cssClass("toggle")).x()))
-                .click();
-        elements(byXpath(X.all().by(Its.id("todo-list"))
-                .child("li").by(Its.cssClass("completed")).x()))
-                .shouldHave(exactTexts("b"));
-        elements(byXpath(X.all().by(Its.id("todo-list"))
-                .child("li").by(Its.noCssClass("completed")).x()))
-                .shouldHave(exactTexts("a", "c"));
+        element(byXpath(X
+                .any().by(Its.id("todo-list"))
+                .child("li").by(Its.descendantText("b"))
+                .descendant().by(Its.сssClass("toggle"))
+                .x())).click();
+        elements(byXpath(X
+                .any().by(Its.id("todo-list"))
+                .child("li").by(Its.сssClass("completed"))
+                .x())).shouldHave(exactTexts("b"));
+        elements(byXpath(X
+                .any().by(Its.id("todo-list"))
+                .child("li").byNot(Its.сssClass("completed"))
+                .x())).shouldHave(exactTexts("a", "c"));
     }
 }

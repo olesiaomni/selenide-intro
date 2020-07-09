@@ -2,7 +2,7 @@ package com.omni.selenideintro.common.selectors.xpath.dsl;
 
 public class X {
 
-    public static X all() {
+    public static X any() {
         return new X("//*");
     }
 
@@ -17,14 +17,26 @@ public class X {
         return this;
     }
 
-    public X by(String value){
-        this.selector += value;
+    public X child(){
+        return child("*");
+    }
+
+    public X descendant(String value){
+        this.selector += "//" + value;
         return this;
     }
 
     public X descendant() {
-        this.selector += "//*";
+        return descendant("*");
+    }
+
+    public X by(String predicate){
+        this.selector += "[" + predicate + "]";
         return this;
+    }
+
+    public X byNot(String predicate){
+        return by("not(" + predicate + ")");
     }
 
        public String x() {
