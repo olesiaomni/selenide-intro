@@ -41,7 +41,7 @@ public class OperationsTest {
                 .x())).shouldHave(exactTexts("b"));
         elements(byXpath(X
                 .any().by(Its.id("todo-list"))
-                .child("li").byNot(Its.сssClass("completed"))
+                .child("li").by(Its.noCssClass("completed"))
                 .x())).shouldHave(exactTexts("a", "c"));
     }
 }

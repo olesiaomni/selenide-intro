@@ -10,6 +10,10 @@ public class Its {
         return ".//text()='" + value + "'";
     }
 
+    public static String noCssClass(String value){
+        return "not(" + сssClass(value) + ")";
+    }
+
     public static String сssClass(String value) {
         return "contains(concat(' ', normalize-space(@class), ' '), ' " + value + " '" + ")";
     }

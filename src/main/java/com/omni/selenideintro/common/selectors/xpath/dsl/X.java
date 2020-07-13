@@ -35,10 +35,6 @@ public class X {
         return this;
     }
 
-    public X byNot(String predicate){
-        return by("not(" + predicate + ")");
-    }
-
        public String x() {
         return this.selector;
     }
