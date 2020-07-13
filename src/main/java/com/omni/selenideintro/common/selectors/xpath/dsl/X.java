@@ -35,6 +35,10 @@ public class X {
         return this;
     }
 
+    public X byNot(String predicate){
+        return by(Its.not(predicate));
+    }
+
        public String x() {
         return this.selector;
     }
